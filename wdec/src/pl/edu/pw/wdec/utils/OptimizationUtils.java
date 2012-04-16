@@ -40,17 +40,17 @@ public class OptimizationUtils {
 	 * @return - zysk wyliczony przez solwer
 	 */
 	private static Double getProfit(List<Message> messages) {
-		
+		//TODO wyci¹gn¹æ wartoœæ profitu z komunikatów
 		return null;
 	}
 
 	/**
 	 * Wyciaga z listy komunikatow AMPLa wartosci ktore nalezy podac w symulatorze
 	 * @param messages - lista komunikatow AMPLa
-	 * @return - wypelniony obiekt {@link OutputData}
+	 * @return - wypelniony obiekt {@linkplain OutputData}
 	 */
 	private static OutputData fillOutputData(List<Message> messages) {
-		
+		//TODO zape³niæ outputData na podstawie komunikatów
 		return null;
 	}
 
@@ -59,7 +59,9 @@ public class OptimizationUtils {
 	 * @return lista zawierajaca wartosci zmiennych po zakonczonej optymalizacji
 	 */
 	private static List<Message> optimize() {
-		return jampl.communicate(new Message(""));
+		//TODO przygotowaæ komende do wyslania do ampla
+		String command = "reset; ";
+		return jampl.communicate(new Message(command));
 		
 	}
 
@@ -72,6 +74,7 @@ public class OptimizationUtils {
 		if(jampl == null) {
 			jampl = new JAMPL();
 		}
+		//TODO przygotowaæ pliki .mod, .dat itp
 	}	
 
 }

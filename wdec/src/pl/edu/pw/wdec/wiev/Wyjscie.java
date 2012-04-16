@@ -108,11 +108,7 @@ public class Wyjscie extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-/*		        zysk.setText(Float.toString(wejscie.getZysk()));
-		        ryzyko.setText(Float.toString(wejscie.getRyzyko()));
-		        koszt_zm.setText(Float.toString(wejscie.getKosztZm()));
-		        koszt_c.setText(Float.toString(wejscie.getKosztStaly()));*/
-				//TODO wyliczyc co potrzebne
+				//TODO wyliczyæ co potrzebne, czyli wyznaczyæ z parametrów ryzyko i zysk, wstawiæ to do punktu.
 		        ChartPoint point = new ChartPoint();
 		        wykresPanel.changeButtonPanel(point);
 			}
