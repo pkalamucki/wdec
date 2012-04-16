@@ -16,7 +16,11 @@ import pl.edu.pw.wdec.utils.OptimizationUtils;
 
 public class Wyjscie extends JPanel{
 	
-    private javax.swing.JLabel jLabel12;
+    /**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = -1278932452289395686L;
+	private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -48,8 +52,6 @@ public class Wyjscie extends JPanel{
 	private JLabel koszt_zm;
 	private JLabel koszt_c;
 	
-    private Wyjscie wyjsciePanel;
-    private OutputData outputData;
 	private OutputData data;
     
     

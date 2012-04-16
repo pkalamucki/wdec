@@ -163,7 +163,8 @@ public class Wejscie extends JPanel{
 				data.setMaxProdukcja((Double) zdolnosc.getValue());
 				
 				//wejscie.generujPkty();
-				wykresPanel.change(data);
+				Set<ChartPoint> points = ChartPointsGenerator.generateChartPoints(data, MIN_RISK, MAX_RISK, STEP);
+				wykresPanel.change(points);
 	//			System.out.println("cre");
 				
 				

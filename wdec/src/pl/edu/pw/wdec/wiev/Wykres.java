@@ -31,6 +31,7 @@ import org.jfree.data.xy.XYSeriesCollection;
 
 import pl.edu.pw.wdec.data.ChartPoint;
 import pl.edu.pw.wdec.data.EntryData;
+import pl.edu.pw.wdec.utils.ChartPointsGenerator;
 import pl.edu.pw.wdec.utils.EntryDataBean;
 
 public class Wykres extends javax.swing.JPanel implements MouseListener,
@@ -47,8 +48,6 @@ public class Wykres extends javax.swing.JPanel implements MouseListener,
 	private XYSeries series;
 	private DefaultXYItemRenderer renderer;
 	
-	private XYSeries series_one;
-	private XYSeriesCollection dataset_one;
 	
 	private Wyjscie wyjsciePanel;
 	JLabel zyskLabel;
@@ -58,16 +57,14 @@ public class Wykres extends javax.swing.JPanel implements MouseListener,
 	private JLabel info;
 	JButton b;
 	
-	private Float x;
-	private Float y;
 	private Set<ChartPoint> points;
 	
-	private EntryData data;
+	private EntryData entryData;
 	
 	/** Creates new form wykres */
 	public Wykres(Set<ChartPoint> points) {
 		this.points = points;
-		data = EntryDataBean.getEntryData();
+		this.entryData = EntryDataBean.getEntryData();
 		initComponents();
 
 	}
@@ -198,6 +195,7 @@ public class Wykres extends javax.swing.JPanel implements MouseListener,
 	}
 
 	/* musi przyjmowac jakis dataset */
+	@SuppressWarnings("deprecation")
 	private void generateChart() {
 
 		createData();
@@ -231,7 +229,8 @@ public class Wykres extends javax.swing.JPanel implements MouseListener,
 		chartPanel.setBounds(10, 10, 500, 380);
 	}
 
-	public void change(EntryData wejscie) {
+	public void change(Set<ChartPoint> points) {
+		this.points = points;
 		dataset.removeAllSeries();
 		series.clear();
 		chartPanel.removeAll();
@@ -300,40 +299,12 @@ public class Wykres extends javax.swing.JPanel implements MouseListener,
 		drawBounding(p2d);
 	}
 
-
-
-
-	private Point2D getNearestPointWithEntity(Point2D p) {
-		double minDistance = MIN_DISTANCE_FROM_POINT;
-
-		
-		
-		Point2D point = null;
-//		EntityCollection entities = chartPanel.getChartRenderingInfo()
-//				.getEntityCollection();
-//		for (Iterator iter = entities.iterator(); iter.hasNext();) {
-//			ChartEntity element = (ChartEntity) iter.next();
-//
-//			Point2D centerPoint = new Point2D.Double();
-//
-//			if (p.getdistance(centerPoint) < minDistance) {
-//				minDistance = p.distance(centerPoint);
-//				point = centerPoint;
-//			}
-//		}
-
-		return point;
-	}
-
 	public void createData() {
-
 		for (ChartPoint point : points) {
-
+			
 			series.add(point.getRisk(), point.getProfit());
 		}
-		
 		dataset.addSeries(series);
-
 	}
 
 	private void drawBounding(Point2D p2d) {
@@ -351,7 +322,6 @@ public class Wykres extends javax.swing.JPanel implements MouseListener,
 		if(p2d.getX()<0){
 			return;
 		}
-		
 		
 		Ellipse2D.Double last = new Ellipse2D.Double(p2d.getX()
 				- MIN_DISTANCE_FROM_POINT,
