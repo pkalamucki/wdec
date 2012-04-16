@@ -1,6 +1,5 @@
 package pl.edu.pw.wdec.wiev;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,7 +7,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
-import javax.swing.JTextArea;
 
 import pl.edu.pw.wdec.data.ChartPoint;
 import pl.edu.pw.wdec.data.OutputData;
