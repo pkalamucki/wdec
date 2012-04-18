@@ -132,7 +132,7 @@ public class OptimizationUtils {
 		p += "param oprocentowanie_kredytu := "+entry.getProcentKredytu()/100+";\n";
 		p += "param aktualna_gotowka := "+entry.getGotowka()+";\n";
 		p += "param ryzyko_max := "+risk+";\n";
-		p += "param podatek := "+entry.getPodatek()+";\n";
+		p += "param podatek := "+entry.getPodatek()/100+";\n";
 		p += "param kredyt_max := "+entry.getMaxKredyt()+";\n";
 		p += "param amortyzacja := "+entry.getAmortyzacja()+";\n";
 		p += "param ilosc_etapow_do_konca := "+entry.getIloscEtapowDoKonca()+";\n";
