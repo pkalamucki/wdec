@@ -1,7 +1,7 @@
 package pl.edu.pw.wdec.utils;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import pl.edu.pw.wdec.data.ChartPoint;
 import pl.edu.pw.wdec.data.EntryData;
@@ -20,8 +20,8 @@ public class ChartPointsGenerator {
 	 * @param step - wartosc skoku, o ktory zwieszy sie ryzyko w kolejnej iteracji
 	 * @return - zbior punktow wyznaczajacych wykres
 	 */
-	public static Set<ChartPoint> generateChartPoints(EntryData data, Double minRisk, Double maxRisk, Double step) {
-		Set<ChartPoint> points = new HashSet<ChartPoint>();
+	public static List<ChartPoint> generateChartPoints(EntryData data, Double minRisk, Double maxRisk, Double step) {
+		List<ChartPoint> points = new ArrayList<ChartPoint>();
 		Double risk = minRisk;
 		while (risk <= maxRisk) {
 			ChartPoint point = new ChartPoint();

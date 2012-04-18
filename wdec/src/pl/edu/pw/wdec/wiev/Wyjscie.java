@@ -243,10 +243,8 @@ public class Wyjscie extends JPanel{
 	}
 	
 	public void setValues(Double risk){
-		
-		if (!MappingFactory.getProfitOutputMap().containsKey(risk))
-			OptimizationUtils.OptimizeProfit(EntryDataBean.getEntryData(), risk);
-		data = MappingFactory.getProfitOutputMap().get(risk);
+		Double profit = OptimizationUtils.OptimizeProfit(EntryDataBean.getEntryData(), risk);
+		data = MappingFactory.getProfitOutputMap().get(profit);
 
         jakosc.setValue(data.getJakosc());
         jakosc.setEditor(new JSpinner.NumberEditor(jakosc,  "###,###,##0.00"));

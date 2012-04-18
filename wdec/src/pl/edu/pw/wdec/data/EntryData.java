@@ -30,6 +30,8 @@ public class EntryData {
 	private Double skup;
 	/** Maksymalna zdolnosc produkcyjna */
 	private Double maxProdukcja;
+	
+	private Integer iloscEtapowDoKonca;
 
 	public EntryData(Double majatekTrwaly, Double maxKredyt, Double gotowka,
 			Double zadluzenie, Double amortyzacja, Double kosztStaly,
@@ -46,6 +48,7 @@ public class EntryData {
 		this.procentKonta = procentKonta;
 		this.procentKredytu = procentKredytu;
 		this.zadluzenie = zadluzenie;
+		this.iloscEtapowDoKonca = 5;
 	}
 
 	public Double getMajatekTrwaly() {
@@ -134,6 +137,14 @@ public class EntryData {
 
 	public void setMaxProdukcja(Double maxProdukcja) {
 		this.maxProdukcja = maxProdukcja;
+	}
+
+	public Integer getIloscEtapowDoKonca() {
+		return iloscEtapowDoKonca;
+	}
+
+	public void setIloscEtapowDoKonca(Integer iloscEtapowDoKonca) {
+		this.iloscEtapowDoKonca = iloscEtapowDoKonca;
 	}
 
 }

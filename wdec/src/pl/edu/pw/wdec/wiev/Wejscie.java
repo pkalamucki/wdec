@@ -2,6 +2,7 @@ package pl.edu.pw.wdec.wiev;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.util.Set;
 
 import javax.swing.JPanel;
@@ -56,7 +57,7 @@ public class Wejscie extends JPanel{
 
 	public Wejscie(){       
 		data = EntryDataBean.getEntryData();
-        Set<ChartPoint> points = ChartPointsGenerator.generateChartPoints(data, MIN_RISK, MAX_RISK, STEP);
+        List<ChartPoint> points = ChartPointsGenerator.generateChartPoints(data, MIN_RISK, MAX_RISK, STEP);
         wykresPanel = new Wykres(points);
 		initComponents();
 	}
@@ -163,7 +164,7 @@ public class Wejscie extends JPanel{
 				data.setMaxProdukcja((Double) zdolnosc.getValue());
 				
 				//wejscie.generujPkty();
-				Set<ChartPoint> points = ChartPointsGenerator.generateChartPoints(data, MIN_RISK, MAX_RISK, STEP);
+				List<ChartPoint> points = ChartPointsGenerator.generateChartPoints(data, MIN_RISK, MAX_RISK, STEP);
 				wykresPanel.change(points);
 	//			System.out.println("cre");
 				

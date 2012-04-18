@@ -12,7 +12,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Ellipse2D.Double;
 import java.awt.geom.Point2D;
-import java.util.Set;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -31,7 +31,6 @@ import org.jfree.data.xy.XYSeriesCollection;
 
 import pl.edu.pw.wdec.data.ChartPoint;
 import pl.edu.pw.wdec.data.EntryData;
-import pl.edu.pw.wdec.utils.ChartPointsGenerator;
 import pl.edu.pw.wdec.utils.EntryDataBean;
 
 public class Wykres extends javax.swing.JPanel implements MouseListener,
@@ -57,12 +56,12 @@ public class Wykres extends javax.swing.JPanel implements MouseListener,
 	private JLabel info;
 	JButton b;
 	
-	private Set<ChartPoint> points;
+	private List<ChartPoint> points;
 	
 	private EntryData entryData;
 	
 	/** Creates new form wykres */
-	public Wykres(Set<ChartPoint> points) {
+	public Wykres(List<ChartPoint> points) {
 		this.points = points;
 		this.entryData = EntryDataBean.getEntryData();
 		initComponents();
@@ -229,7 +228,7 @@ public class Wykres extends javax.swing.JPanel implements MouseListener,
 		chartPanel.setBounds(10, 10, 500, 380);
 	}
 
-	public void change(Set<ChartPoint> points) {
+	public void change(List<ChartPoint> points) {
 		this.points = points;
 		dataset.removeAllSeries();
 		series.clear();
