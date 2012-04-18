@@ -92,7 +92,7 @@ public class Wyjscie extends JPanel{
         infoLabel.setText("Wyliczone wartosci:");
         zyskLabel.setText("Zysk");
         ryzykoLabel.setText("Ryzyko");
-        koszt_zmLabel.setText("Koszt calkowity");
+        koszt_zmLabel.setText("Koszt zmienny");
         koszt_cLabel.setText("");
         
         zysk.setText("0");
