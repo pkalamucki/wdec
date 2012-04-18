@@ -3,8 +3,8 @@ package pl.edu.pw.wdec.wiev;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.Set;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 
@@ -46,9 +46,12 @@ public class Wejscie extends JPanel{
     private javax.swing.JSpinner podatek;
     private javax.swing.JSpinner zadluzenie;
     private javax.swing.JSpinner zdolnosc;
+    private javax.swing.JSpinner etapy;
     
     private Wykres wykresPanel;
     private EntryData data;
+
+	private JLabel etapyLabel;
 
     
 	public Wykres getWykresPanel() {
@@ -115,6 +118,11 @@ public class Wejscie extends JPanel{
         zdolnosc = new javax.swing.JSpinner();
         zdolnosc.setValue(data.getMaxProdukcja());
 		zdolnosc.setEditor(new JSpinner.NumberEditor(zdolnosc, "###,###,##0.00"));
+		
+        etapyLabel = new javax.swing.JLabel();
+        etapy = new javax.swing.JSpinner();
+        etapy.setValue(data.getIloscEtapowDoKonca());
+		etapy.setEditor(new JSpinner.NumberEditor(etapy, "#"));
         
         liczenie = new javax.swing.JButton();
 	
@@ -139,7 +147,7 @@ public class Wejscie extends JPanel{
 
         zdolnoscLabel.setText("Maksymalna zdolnosc produkcyjna");
         
-
+        etapyLabel.setText("Liczba etapow do konca");
 
         liczenie.setText("Zapisz");
         
@@ -192,7 +200,8 @@ public class Wejscie extends JPanel{
                             .addComponent(majatekLabel)
                             .addComponent(maksKredytLabel)
                             .addComponent(podatekLabel)
-                            .addComponent(zdolnoscLabel))
+                            .addComponent(zdolnoscLabel)
+                            .addComponent(etapyLabel))
                         .addGap(18, 18, 18)
                         .addGroup(wejscieTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(zdolnosc)
@@ -204,7 +213,8 @@ public class Wejscie extends JPanel{
                             .addComponent(amortyzacja)
                             .addComponent(oprocentowanieKredytu)
                             .addComponent(koszty)
-                            .addComponent(oprocentowanieBank, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))))
+                            .addComponent(oprocentowanieBank)
+                            .addComponent(etapy, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))))
                 .addGap(360, 360, 360))
         );
         wejscieTabLayout.setVerticalGroup(
@@ -250,6 +260,10 @@ public class Wejscie extends JPanel{
                 .addGroup(wejscieTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(zdolnoscLabel)
                     .addComponent(zdolnosc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                 .addGap(18, 18, 18)
+                .addGroup(wejscieTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etapyLabel)
+                    .addComponent(etapy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(liczenie)
                 .addGap(33, 33, 33))

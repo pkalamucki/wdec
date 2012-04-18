@@ -92,13 +92,13 @@ public class Wyjscie extends JPanel{
         infoLabel.setText("Wyliczone wartosci:");
         zyskLabel.setText("Zysk");
         ryzykoLabel.setText("Ryzyko");
-        koszt_zmLabel.setText("Koszt jednostkowy zmienny");
-        koszt_cLabel.setText("Koszt calkowity");
+        koszt_zmLabel.setText("Koszt calkowity");
+        koszt_cLabel.setText("");
         
         zysk.setText("0");
         ryzyko.setText("0");
         koszt_zm.setText("0");
-        koszt_c.setText("0");
+        koszt_c.setText("");
         
         
         wyjscieButton = new JButton();
@@ -271,6 +271,10 @@ public class Wyjscie extends JPanel{
         kredyt.setValue(data.getKredyt());
         kredyt.setEditor(new JSpinner.NumberEditor(kredyt,  "###,###,##0.00"));
         
+        zysk.setText(""+profit);
+        ryzyko.setText(""+risk);
+        koszt_zm.setText(""+OptimizationUtils.getValue("koszt_produkcji"));
+        koszt_c.setText("");
 	}
 	
 	public void setZyskText(Float t){

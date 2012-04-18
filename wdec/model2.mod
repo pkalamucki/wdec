@@ -46,7 +46,7 @@ subject to gotowka_na_koniec_etapu: gotowka = wolna_gotowka + przychod - wysokos
 subject to wolna_gotowka_na_koniec_etapu: wolna_gotowka = aktualna_gotowka+kredyt-rata-amortyzacja-koszt_reklamy_tv-koszt_reklamy_net-koszt_reklamy_magazyny-koszty_stale-wolumen*koszt_produkcji;
 subject to przychod_na_koniec_etapu: przychod = wolumen*cena + wolna_gotowka*oprocentowanie_konta;
 subject to _podatek: wysokosc_podatku = przychod*podatek;
-subject to plynnosc: wolna_gotowka >= amortyzacja + koszty_stale;
+subject to plynnosc: wolna_gotowka = amortyzacja + koszty_stale;
 
 subject to wysokosc_raty: rata = (kredyt + zadluzenie)*oprocentowanie_kredytu + (kredyt + zadluzenie)/ilosc_etapow_do_konca;
 subject to zdolnosc_kredytowa: kredyt <= kredyt_max - zadluzenie;

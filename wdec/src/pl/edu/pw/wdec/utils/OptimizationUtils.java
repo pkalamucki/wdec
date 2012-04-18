@@ -64,7 +64,7 @@ public class OptimizationUtils {
 		return outputData;
 	}
 
-	private static Double getValue(String string) {
+	public static Double getValue(String string) {
 		List<Message> messages = jampl.communicate(new Message("display "+string+";\n"));
 		for (Message m : messages) {
 			String k = m.toString();
@@ -128,8 +128,8 @@ public class OptimizationUtils {
 		EntryData entry = EntryDataBean.getEntryData();
 		String p = new String();
 		p += "param koszty_stale := "+entry.getKosztStaly()+";\n";
-		p += "param oprocentowanie_konta := "+entry.getProcentKonta()+";\n";
-		p += "param oprocentowanie_kredytu := "+entry.getProcentKredytu()+";\n";
+		p += "param oprocentowanie_konta := "+entry.getProcentKonta()/100+";\n";
+		p += "param oprocentowanie_kredytu := "+entry.getProcentKredytu()/100+";\n";
 		p += "param aktualna_gotowka := "+entry.getGotowka()+";\n";
 		p += "param ryzyko_max := "+risk+";\n";
 		p += "param podatek := "+entry.getPodatek()+";\n";
