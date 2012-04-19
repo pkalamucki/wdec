@@ -2,11 +2,14 @@ package pl.edu.pw.wdec.wiev;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
+
+import org.jfree.data.function.PowerFunction2D;
 
 import pl.edu.pw.wdec.data.ChartPoint;
 import pl.edu.pw.wdec.data.OutputData;
@@ -109,7 +112,10 @@ public class Wyjscie extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 
 				//TODO wyliczyæ co potrzebne, czyli wyznaczyæ z parametrów ryzyko i zysk, wstawiæ to do punktu.
-		        ChartPoint point = new ChartPoint();
+				Double ryzyko = wyliczRyzyko();
+				Double profit = wyliczProfit();
+				
+		        ChartPoint point = new ChartPoint(ryzyko, profit);
 		        wykresPanel.changeButtonPanel(point);
 			}
         });
@@ -295,5 +301,77 @@ public class Wyjscie extends JPanel{
 	
 	public void setWykresPanel(Wykres wykresPanel) {
 		this.wykresPanel = wykresPanel;
+	}
+	
+	private Double wyliczRyzyko(){
+		Double ryzyko = 0d;
+
+		Double jakoscValue	 = (Double) jakosc.getValue();
+		
+		Double wolumenValue = (Double) wolumen.getValue();
+		
+		if(wolumenValue>EntryDataBean.getEntryData().getMaxProdukcja()){
+			wolumenValue = EntryDataBean.getEntryData().getMaxProdukcja();
+			wolumen.setValue(EntryDataBean.getEntryData().getMaxProdukcja());
+		}
+		
+		Double cenaValue = (Double) cena.getValue();
+		Double reklamaTvValue = (Double) tv.getValue();
+		Double reklamaMagValue = (Double) magazyn.getValue();
+		Double reklamaIntValue = (Double) internet.getValue();
+		
+		
+		ryzyko = 0.35*(cenaValue-15)/15 + 0.23*(100 - jakoscValue)/100 + 0.04*(100000 - reklamaTvValue)/100000+ 0.025*(100000 - reklamaIntValue)/100000+ 0.035*(100000 - reklamaMagValue)/100000;
+		
+		return ryzyko;
+	}
+	
+	private Double wyliczProfit(){		
+		Double profit = 0d;
+		Double przychod;
+		Double wolnaKasa;
+		Double kosztyProdukcji;
+		Double wysokoscPodatku;
+		Double rata;
+		Double kosztyReklamy;
+		Double jakoscValue	 = (Double) jakosc.getValue();
+		
+		Double wolumenValue = (Double) wolumen.getValue();
+		
+		if(wolumenValue>EntryDataBean.getEntryData().getMaxProdukcja()){
+			wolumenValue = EntryDataBean.getEntryData().getMaxProdukcja();
+			wolumen.setValue(EntryDataBean.getEntryData().getMaxProdukcja());
+		}
+		
+		Double cenaValue = (Double) cena.getValue();
+		Double reklamaTvValue = (Double) tv.getValue();
+		Double reklamaMagValue = (Double) magazyn.getValue();
+		Double reklamaIntValue = (Double) internet.getValue();
+		Double kredytValue = (Double) kredyt.getValue();
+		
+		Double oprocentowanieKonta = EntryDataBean.getEntryData().getProcentKonta()/100;
+		Double oprocentowanieKredytu = EntryDataBean.getEntryData().getProcentKredytu()/100;
+		Double podatek = EntryDataBean.getEntryData().getPodatek()/100;
+		Double kosztStaly = EntryDataBean.getEntryData().getKosztStaly();
+		Double kasaStart = EntryDataBean.getEntryData().getGotowka();
+		Double amortyzacja = EntryDataBean.getEntryData().getAmortyzacja();
+		Double zadluzenie = EntryDataBean.getEntryData().getZadluzenie();
+		Integer liczbaEtapowDoKonca = EntryDataBean.getEntryData().getIloscEtapowDoKonca();
+		
+		rata = (kredytValue + zadluzenie)*oprocentowanieKredytu + (kredytValue + zadluzenie)/liczbaEtapowDoKonca;
+		
+		kosztyProdukcji = 0.000014*jakoscValue*jakoscValue*jakoscValue - 0.0017663*jakoscValue*jakoscValue + 0.0965*jakoscValue + 6.78476+ 0.000003*wolumenValue;
+		
+		kosztyReklamy = reklamaTvValue+reklamaIntValue+reklamaMagValue;
+		
+		wolnaKasa = kasaStart+kredytValue-rata-amortyzacja-kosztyReklamy-kosztStaly-wolumenValue*kosztyProdukcji;
+		
+		przychod = wolumenValue*cenaValue + wolnaKasa*oprocentowanieKonta;
+		
+		wysokoscPodatku = przychod*podatek;
+		
+		profit = wolnaKasa + przychod - wysokoscPodatku;
+
+		return profit;
 	}
 }
